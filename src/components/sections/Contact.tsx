@@ -22,6 +22,9 @@ export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
   );
+  const [errorMessage, setErrorMessage] = useState(
+    "Odeslání se nepovedlo. Zkuste to prosím znovu nebo napište přímo na e-mail."
+  );
   const [focused, setFocused] = useState<keyof FormState | null>(null);
 
   const validate = () => {
@@ -41,13 +44,26 @@ export function Contact() {
     event.preventDefault();
     if (!validate()) return;
     setStatus("loading");
+    setErrorMessage(
+      "Odeslání se nepovedlo. Zkuste to prosím znovu nebo napište přímo na e-mail."
+    );
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!response.ok) throw new Error("Request failed");
+      const payload = (await response.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+      } | null;
+
+      if (!response.ok || !payload?.ok) {
+        if (payload?.error) setErrorMessage(payload.error);
+        setStatus("error");
+        return;
+      }
+
       setStatus("success");
       setForm(initial);
     } catch {
@@ -216,8 +232,7 @@ export function Contact() {
                     exit={{ opacity: 0 }}
                     className="mt-4 text-sm text-danger"
                   >
-                    Odeslání se nepovedlo. Zkuste to prosím znovu nebo napište
-                    přímo na e-mail.
+                    {errorMessage}
                   </motion.p>
                 ) : null}
               </AnimatePresence>

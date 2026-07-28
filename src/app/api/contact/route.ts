@@ -36,26 +36,30 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) {
       console.error("[contact] Missing RESEND_API_KEY");
       return NextResponse.json(
-        { ok: false, error: "E-mailová služba není nakonfigurovaná." },
+        {
+          ok: false,
+          error:
+            "Chybí RESEND_API_KEY ve Vercelu. Přidej proměnnou a udělej Redeploy.",
+        },
         { status: 500 }
       );
     }
 
-    const to = process.env.CONTACT_TO_EMAIL ?? "kontakt@simonracko.cz";
-    const from =
-      process.env.CONTACT_FROM_EMAIL ??
-      "Portfolio <onboarding@resend.dev>";
+    const to = (process.env.CONTACT_TO_EMAIL ?? "kontakt@simonracko.cz").trim();
+    const from = (
+      process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>"
+    ).trim();
 
     const resend = new Resend(apiKey);
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message).replaceAll("\n", "<br />");
 
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from,
       to: [to],
       replyTo: email,
@@ -74,17 +78,33 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("[contact] Resend error", error);
-      return NextResponse.json(
-        { ok: false, error: "Odeslání e-mailu se nepovedlo." },
-        { status: 502 }
-      );
+
+      const detail = (error.message || "").toLowerCase();
+      let friendly =
+        "Odeslání e-mailu se nepovedlo. Zkontroluj Resend nastavení ve Vercelu.";
+
+      if (detail.includes("api key") || detail.includes("unauthorized")) {
+        friendly =
+          "Neplatný RESEND_API_KEY. Zkontroluj klíč ve Vercelu a udělej Redeploy.";
+      } else if (
+        detail.includes("verify") ||
+        detail.includes("domain") ||
+        detail.includes("only send testing") ||
+        detail.includes("you can only send")
+      ) {
+        friendly =
+          "Resend zatím povoluje posílat jen na e-mail účtu v Resendu. Nastav CONTACT_TO_EMAIL na e-mail, kterým jsi se registroval v Resendu, nebo ověř doménu simonracko.cz.";
+      }
+
+      return NextResponse.json({ ok: false, error: friendly }, { status: 502 });
     }
 
+    console.info("[contact] sent", data?.id);
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("[contact] Unexpected error", error);
     return NextResponse.json(
-      { ok: false, error: "Neočekávaná chyba." },
+      { ok: false, error: "Neočekávaná chyba při odesílání." },
       { status: 500 }
     );
   }
