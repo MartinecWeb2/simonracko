@@ -76,10 +76,20 @@ Pokud máš jinou doménu, změň hodnotu `NEXT_PUBLIC_SITE_URL` a DNS stejně p
 - `.env.example` — proměnné prostředí
 - `vercel.json` — region Frankfurt (`fra1`)
 
-## Checklist před ostrým spuštěním
+## Kontaktní formulář (Resend)
 
-- [ ] Upravit e-mail, telefon a sociální sítě v `src/data/site.ts`
-- [ ] Nastavit `NEXT_PUBLIC_SITE_URL` ve Vercelu
-- [ ] Připojit doménu a ověřit HTTPS
-- [ ] Doplnit vlastní fotku / OG vizuál
-- [ ] (Volitelně) napojit kontaktní formulář na e-mail provider
+1. Vytvoř účet na [resend.com](https://resend.com)
+2. Vytvoř API key
+3. Ve Vercelu přidej Environment Variables:
+
+| Name | Value |
+| --- | --- |
+| `RESEND_API_KEY` | `re_...` |
+| `CONTACT_TO_EMAIL` | `kontakt@simonracko.cz` |
+| `CONTACT_FROM_EMAIL` | `Portfolio <onboarding@resend.dev>` |
+
+4. Pro ostré odesílání z vlastní adresy ověř doménu `simonracko.cz` v Resend → Domains
+5. Pak změň `CONTACT_FROM_EMAIL` na např. `Portfolio <kontakt@simonracko.cz>`
+6. Redeploy na Vercelu
+
+Bez `RESEND_API_KEY` formulář e-mail neodešle.
