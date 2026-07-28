@@ -7,8 +7,8 @@ export const siteConfig = {
   description:
     "Tvořím rychlé a moderní webové stránky s důrazem na design, přehlednost a reálný výsledek pro klienta. Stavím s podporou AI workflow.",
   url: getSiteUrl(),
-  email: "ahoj@sajmiii.cz",
-  phone: "+420 777 000 000",
+  email: "kontakt@simonracko.cz",
+  phone: "+420 601 357 845",
   location: "Česká republika",
   ogImage: "/og.png",
   social: {
