@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sajmiii Portfolio
 
-## Getting Started
+Osobní portfolio Šimona Račka — Next.js 15, React 19, TypeScript, Tailwind CSS.
 
-First, run the development server:
+## Lokální spuštění
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otevři [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Nasazení na Vercel
 
-To learn more about Next.js, take a look at the following resources:
+### 1) GitHub
+1. Vytvoř repo na GitHubu
+2. Pushni tento projekt na `main`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git add .
+git commit -m "Initial portfolio ready for Vercel"
+git branch -M main
+git remote add origin https://github.com/TVE-UZIVATELSKE-JMENO/REPO.git
+git push -u origin main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2) Vercel projekt
+1. Jdi na [vercel.com/new](https://vercel.com/new)
+2. Importuj GitHub repo
+3. Framework: **Next.js** (detekuje se samo)
+4. Do **Environment Variables** přidej:
 
-## Deploy on Vercel
+| Name | Value |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | `https://sajmiii.cz` |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Po deployi dostaneš URL typu `https://projekt.vercel.app`.
+
+### 3) Vlastní doména (např. sajmiii.cz)
+
+1. Vercel → Project → **Settings → Domains**
+2. Přidej `sajmiii.cz` a `www.sajmiii.cz`
+3. U registrátora domény nastav DNS podle Vercelu:
+
+**Apex doména (`sajmiii.cz`):**
+- Type: `A`
+- Name: `@`
+- Value: `76.76.21.21`
+
+**WWW (`www.sajmiii.cz`):**
+- Type: `CNAME`
+- Name: `www`
+- Value: `cname.vercel-dns.com`
+
+4. Počkej na propagaci DNS (minuty až hodiny)
+5. Vercel vystaví HTTPS automaticky
+6. Projekt má redirect `www` → apex (bez www)
+
+Pokud máš jinou doménu, změň hodnotu `NEXT_PUBLIC_SITE_URL` a DNS stejně podle Vercel Domains.
+
+## Důležité soubory
+
+- `src/data/site.ts` — texty, kontakt, projekty
+- `src/lib/site-url.ts` — kanonická URL
+- `.env.example` — proměnné prostředí
+- `vercel.json` — region Frankfurt (`fra1`)
+
+## Checklist před ostrým spuštěním
+
+- [ ] Upravit e-mail, telefon a sociální sítě v `src/data/site.ts`
+- [ ] Nastavit `NEXT_PUBLIC_SITE_URL` ve Vercelu
+- [ ] Připojit doménu a ověřit HTTPS
+- [ ] Doplnit vlastní fotku / OG vizuál
+- [ ] (Volitelně) napojit kontaktní formulář na e-mail provider
