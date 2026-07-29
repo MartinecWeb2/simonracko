@@ -245,6 +245,7 @@ export const projects = [
     client: "Jiří Martinec",
     liveUrl: "https://autoskola-martinec.cz/pobocky",
     githubUrl: "",
+    image: "/images/projects/autoskola-martinec.jpg",
     color: "#8b5cf6",
     results: [
       "Live v produkci",

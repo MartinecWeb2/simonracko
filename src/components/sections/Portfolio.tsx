@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/effects/Reveal";
@@ -25,16 +26,27 @@ export function Portfolio() {
                   className="glass gradient-border relative flex h-full flex-col overflow-hidden rounded-[1.75rem] transition duration-500 hover:border-violet-400/25 hover:shadow-[0_0_28px_rgba(139,92,246,0.18)]"
                   data-cursor="hover"
                 >
-                  <div
-                    className="relative aspect-[16/10] overflow-hidden"
-                    style={{
-                      background: `linear-gradient(145deg, ${project.color}40, #0a0a0a 55%, #111 100%)`,
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(167,139,250,0.22),transparent_42%)]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(245,200,76,0.08),transparent_40%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                  <div className="relative aspect-[16/10] overflow-hidden bg-surface-elevated">
+                    {"image" in project && project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={`Náhled webu ${project.title}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 672px"
+                        className="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
+                        priority={index === 0}
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: `linear-gradient(145deg, ${project.color}40, #0a0a0a 55%, #111 100%)`,
+                        }}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                     <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-                      <span className="rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs text-white/80 backdrop-blur">
+                      <span className="rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs text-white/85 backdrop-blur">
                         {project.year}
                       </span>
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white opacity-0 transition duration-500 group-hover:opacity-100">

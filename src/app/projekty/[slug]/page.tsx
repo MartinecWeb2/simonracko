@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
@@ -88,13 +89,25 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </div>
             </div>
 
-            <div
-              className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/10"
-              style={{
-                background: `linear-gradient(145deg, ${project.color}44, #0a0a0a 55%, #111 100%)`,
-              }}
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.2),transparent_45%)]" />
+            <div className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/10 bg-surface-elevated">
+              {"image" in project && project.image ? (
+                <Image
+                  src={project.image}
+                  alt={`Náhled webu ${project.title}`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-top"
+                  priority
+                />
+              ) : (
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `linear-gradient(145deg, ${project.color}44, #0a0a0a 55%, #111 100%)`,
+                  }}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="text-xs uppercase tracking-[0.2em] text-white/60">
                   Preview
