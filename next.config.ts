@@ -1,15 +1,5 @@
 import type { NextConfig } from "next";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://simonracko.cz";
-
-let hostname = "simonracko.cz";
-try {
-  hostname = new URL(siteUrl).hostname.replace(/^www\./, "");
-} catch {
-  hostname = "simonracko.cz";
-}
-
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
@@ -17,16 +7,6 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   compress: true,
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: `www.${hostname}` }],
-        destination: `https://${hostname}/:path*`,
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
