@@ -1,17 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { FaGithub, FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { navLinks, siteConfig } from "@/data/site";
 import { Reveal } from "@/components/effects/Reveal";
-
-const social = [
-  { icon: FaGithub, href: siteConfig.social.github, label: "GitHub" },
-  { icon: FaLinkedinIn, href: siteConfig.social.linkedin, label: "LinkedIn" },
-  { icon: FaInstagram, href: siteConfig.social.instagram, label: "Instagram" },
-  { icon: FaXTwitter, href: siteConfig.social.twitter, label: "X" },
-];
 
 export function Footer() {
   return (
@@ -22,7 +15,7 @@ export function Footer() {
           <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
             <div>
               <p className="font-display text-3xl font-semibold text-white md:text-4xl">
-                {siteConfig.alias}
+                {siteConfig.name}
               </p>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
                 Moderní weby s důrazem na design, přehlednost a výsledek —
@@ -75,20 +68,17 @@ export function Footer() {
                 <li>{siteConfig.location}</li>
               </ul>
               <div className="mt-6 flex gap-3">
-                {social.map(({ icon: Icon, href, label }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    data-cursor="hover"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-muted transition hover:border-white/25 hover:text-white"
-                    whileHover={{ y: -2 }}
-                  >
-                    <Icon size={16} />
-                  </motion.a>
-                ))}
+                <motion.a
+                  href={siteConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  data-cursor="hover"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-muted transition hover:border-white/25 hover:text-white"
+                  whileHover={{ y: -2 }}
+                >
+                  <FaInstagram size={16} />
+                </motion.a>
               </div>
             </div>
           </div>

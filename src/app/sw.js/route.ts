@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export function GET() {
   const sw = `
-const CACHE = 'sajmiii-v1';
+const CACHE = 'simonracko-v1';
 const ASSETS = ['/', '/manifest.webmanifest'];
 
 self.addEventListener('install', (event) => {

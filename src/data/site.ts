@@ -2,20 +2,17 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export const siteConfig = {
   name: "Šimon Račko",
-  alias: "Sajmiii",
+  alias: "Šimon",
   title: "Šimon Račko – Tvorba moderních webů",
   description:
     "Tvořím rychlé a moderní webové stránky s důrazem na design, přehlednost a reálný výsledek pro klienta. Stavím s podporou AI workflow.",
   url: getSiteUrl(),
   email: "kontakt@simonracko.cz",
   phone: "+420 601 357 845",
-  location: "Česká republika",
+  location: "Olomouc",
   ogImage: "/og.png",
   social: {
-    github: "https://github.com/sajmiii",
-    linkedin: "https://linkedin.com/in/sajmiii",
-    instagram: "https://instagram.com/sajmiii",
-    twitter: "https://x.com/sajmiii",
+    instagram: "https://www.instagram.com/sajmiii._/",
   },
 } as const;
 
@@ -34,6 +31,21 @@ export const focusPoints = [
   "AI workflow",
   "Osobní přístup",
   "Jasná komunikace",
+] as const;
+
+export const aboutHighlights = [
+  {
+    title: "Nejdřív smysl",
+    text: "Než začnu skládat vizuál, vyjasníme, co má web reálně udělat.",
+  },
+  {
+    title: "Čistý výsledek",
+    text: "Žádný chaos. Přehledná struktura, silný první dojem a srozumitelná cesta ke kontaktu.",
+  },
+  {
+    title: "Rychlé iterace",
+    text: "Pracuji s AI-assisted workflow — rychleji dodávám, ale každý detail kontroluji.",
+  },
 ] as const;
 
 export const services = [
@@ -125,13 +137,13 @@ export const timeline = [
     year: "2025",
     title: "Autoškola Martinec",
     description:
-      "První klientský web v produkci. Výběr poboček, jasná prezentace služeb a mobilní zkušenost pro zájemce o řidičák.",
+      "Web s výběrem pobočky, přehlednou nabídkou a jednoduchou cestou ke kontaktu — připravený pro mobil i běžný provoz.",
   },
   {
     year: "2026",
     title: "Vlastní portfolio",
     description:
-      "Buduji značku Sajmiii a beru další projekty — stále stejný princip: čistý výsledek, rychlá komunikace, žádné přehánění.",
+      "Ladím prezentaci, workflow i detaily. Stejný princip: čistý výsledek, rychlá komunikace a žádné přehánění.",
   },
   {
     year: "Dnes",
@@ -179,10 +191,9 @@ export const testimonials = [
   {
     id: 1,
     name: "Jiří Martinec",
-    role: "Majitel, Autoškola Martinec",
+    role: "Autoškola Martinec",
     quote:
-      "Šimon nám připravil přehledný web, kde si lidé hned vyberou pobočku a snadno nás kontaktují. Spolupráce byla jednoduchá a výsledek přesně podle domluvy.",
-    rating: 5,
+      "Potřebovali jsme web, kde si člověk hned vybere pobočku a snadno nás kontaktuje. Šimon to dal dohromady přehledně a bez zbytečných komplikací.",
   },
 ] as const;
 
@@ -200,7 +211,7 @@ export const faqs = [
   {
     question: "Jak probíhá spolupráce?",
     answer:
-      "Začneme krátkou konzultací, domluvíme strukturu a postupně vám ukazuji preview. Feedback řešíme průběžně, bez zbytečné byrokracie.",
+      "Nejdřív si krátce řekneme, co od webu potřebujete. Pak sestavíme strukturu a postupně vám ukazuju průběžné verze ke komentářům. Úpravy řešíme hned, bez zbytečných koleček a formalit.",
   },
   {
     question: "Co potřebuji připravit před startem?",

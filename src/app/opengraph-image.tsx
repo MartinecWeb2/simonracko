@@ -29,7 +29,7 @@ export default function OpenGraphImage() {
             color: "#a78bfa",
           }}
         >
-          SAJMIII
+          ŠIMON
         </div>
         <div
           style={{

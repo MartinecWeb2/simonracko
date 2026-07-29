@@ -1,13 +1,13 @@
 import type { NextConfig } from "next";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://sajmiii.cz";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://simonracko.cz";
 
-let hostname = "sajmiii.cz";
+let hostname = "simonracko.cz";
 try {
   hostname = new URL(siteUrl).hostname.replace(/^www\./, "");
 } catch {
-  hostname = "sajmiii.cz";
+  hostname = "simonracko.cz";
 }
 
 const nextConfig: NextConfig = {

@@ -12,8 +12,8 @@ export function Portfolio() {
       <div className="container-page">
         <SectionHeading
           eyebrow="Portfolio"
-          title="Reálný projekt v produkci."
-          description="Začínám s jasnou referencí — a další projekty buduji stejně pečlivě, bez zbytečných slibů navíc."
+          title="Vybraná práce."
+          description="Projekt, na kterém záleželo na přehlednosti, mobilním UX a jasné cestě ke kontaktu."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-1 md:max-w-2xl">

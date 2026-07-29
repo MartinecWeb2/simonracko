@@ -130,7 +130,7 @@ export function Contact() {
                   <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:28px_28px]" />
                   <div className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow shadow-[0_0_30px_rgba(245,200,76,0.65)]" />
                   <p className="absolute bottom-4 left-4 text-xs text-white/70">
-                    Česká republika · remote-first
+                    Česká republika · Olomouc
                   </p>
                 </div>
               </div>

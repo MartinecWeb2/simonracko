@@ -1,6 +1,6 @@
 /**
  * Canonical site URL for SEO, sitemap and Open Graph.
- * Set NEXT_PUBLIC_SITE_URL in Vercel (e.g. https://sajmiii.cz).
+ * Set NEXT_PUBLIC_SITE_URL in Vercel (e.g. https://simonracko.cz).
  */
 export function getSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
@@ -18,5 +18,5 @@ export function getSiteUrl(): string {
     return `https://${preview.replace(/\/$/, "")}`;
   }
 
-  return "https://sajmiii.cz";
+  return "https://simonracko.cz";
 }
