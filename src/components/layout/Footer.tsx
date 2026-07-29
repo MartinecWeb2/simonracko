@@ -5,6 +5,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { navLinks, siteConfig } from "@/data/site";
 import { Reveal } from "@/components/effects/Reveal";
+import { SectionLink } from "@/components/ui/SectionLink";
 
 export function Footer() {
   return (
@@ -30,13 +31,13 @@ export function Footer() {
               <ul className="space-y-3">
                 {navLinks.map((link) => (
                   <li key={link.href}>
-                    <a
+                    <SectionLink
                       href={link.href}
                       className="text-sm text-muted transition hover:text-white"
                       data-cursor="hover"
                     >
                       {link.label}
-                    </a>
+                    </SectionLink>
                   </li>
                 ))}
               </ul>

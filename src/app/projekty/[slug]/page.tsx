@@ -44,11 +44,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <main className="pt-28">
         <article className="container-page pb-24">
           <Link
-            href="/#portfolio"
+            href="/"
             className="inline-flex items-center gap-2 text-sm text-muted transition hover:text-white"
           >
             <ArrowLeft size={16} />
-            Zpět na portfolio
+            Zpět na úvod
           </Link>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">

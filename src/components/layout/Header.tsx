@@ -6,6 +6,8 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks, siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { scrollToSection } from "@/lib/scroll";
+import { SectionLink } from "@/components/ui/SectionLink";
 import { MagneticButton } from "@/components/effects/MagneticButton";
 
 export function Header() {
@@ -49,20 +51,26 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Hlavní navigace">
           {navLinks.map((link) => (
-            <a
+            <SectionLink
               key={link.href}
               href={link.href}
               className="text-sm text-muted transition-colors hover:text-white"
               data-cursor="hover"
             >
               {link.label}
-            </a>
+            </SectionLink>
           ))}
         </nav>
 
         <div className="hidden lg:block">
-          <MagneticButton as="a" href="#kontakt">
-            <span className="inline-flex h-11 items-center rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/90">
+          <MagneticButton
+            as="div"
+            onClick={() => scrollToSection("#kontakt")}
+          >
+            <span
+              className="inline-flex h-11 cursor-pointer items-center rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/90"
+              data-cursor="hover"
+            >
               Domluvit konzultaci
             </span>
           </MagneticButton>
@@ -89,25 +97,31 @@ export function Header() {
           >
             <div className="flex h-full flex-col justify-center gap-6 px-8">
               {navLinks.map((link, index) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="font-display text-3xl font-semibold text-white"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 * index }}
                 >
-                  {link.label}
-                </motion.a>
+                  <SectionLink
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="font-display text-3xl font-semibold text-white"
+                  >
+                    {link.label}
+                  </SectionLink>
+                </motion.div>
               ))}
-              <a
-                href="#kontakt"
-                onClick={() => setOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  scrollToSection("#kontakt");
+                }}
                 className="mt-4 inline-flex h-12 w-fit items-center rounded-full bg-white px-6 text-sm font-medium text-black"
               >
                 Domluvit konzultaci
-              </a>
+              </button>
             </div>
           </motion.div>
         ) : null}

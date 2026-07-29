@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { ParticleField } from "@/components/effects/ParticleField";
 import { MagneticButton } from "@/components/effects/MagneticButton";
 import { siteConfig } from "@/data/site";
+import { scrollToSection } from "@/lib/scroll";
 import { useReducedMotion } from "@/hooks/useMedia";
 
 export function Hero() {
@@ -82,14 +83,14 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <MagneticButton as="a" href="#portfolio">
-            <span className="inline-flex h-14 items-center gap-2 rounded-full bg-white px-8 text-sm font-medium text-black shadow-[0_0_40px_rgba(255,255,255,0.14)] transition hover:bg-white/90">
+          <MagneticButton as="div" onClick={() => scrollToSection("#portfolio")}>
+            <span className="inline-flex h-14 cursor-pointer items-center gap-2 rounded-full bg-white px-8 text-sm font-medium text-black shadow-[0_0_40px_rgba(255,255,255,0.14)] transition hover:bg-white/90">
               Prohlédnout portfolio
               <ArrowDownRight size={16} />
             </span>
           </MagneticButton>
-          <MagneticButton as="a" href="#kontakt">
-            <span className="glass inline-flex h-14 items-center rounded-full px-8 text-sm font-medium text-white transition hover:bg-white/10">
+          <MagneticButton as="div" onClick={() => scrollToSection("#kontakt")}>
+            <span className="glass inline-flex h-14 cursor-pointer items-center rounded-full px-8 text-sm font-medium text-white transition hover:bg-white/10">
               Kontakt
             </span>
           </MagneticButton>
